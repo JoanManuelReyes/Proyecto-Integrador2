@@ -4,7 +4,6 @@ CREATE DATABASE bdIntegradorII;
 USE bdIntegradorII;
 
 -- Tablas
-
 CREATE TABLE Entradas (
     id int  PRIMARY KEY,
     fecha date  NOT NULL,
