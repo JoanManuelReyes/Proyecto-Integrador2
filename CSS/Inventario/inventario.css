@@ -1,0 +1,54 @@
+/* Logo */
+.logo-img {
+    width: 200px;  /* Ajusta el tamaño de la imagen del logo */
+    margin-left: auto;
+    margin-top: -8px;
+}
+
+.custom-navbar {
+    background-color: #F53914;  /* Cambia este valor por el color que prefieras */
+    height: 60px;  /* Ajusta la altura como desees */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* Sidebar */
+.custom-sidebar {
+    height: 100vh; /* Ajusta la altura restando la altura del navbar */
+    background-color: #F53914; /* Color del sidebar */
+    padding-top: 0; /* Eliminar el padding superior */
+    margin-top: 0; /* Eliminar el margen superior */
+    position: sticky; /* Mantener el sidebar en su lugar al hacer scroll */
+    top: 0; /* Asegúrate de que esté en la parte superior */
+}
+
+.custom-sidebar a {
+    color: white; /* Color del texto en el sidebar */
+    font-size: 18px;
+    margin: 10px 0; /* Margen entre los enlaces del sidebar */
+    display: block;
+    padding: 10px;
+    text-align: left;
+}
+
+.custom-sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Cambia el color al pasar el mouse para mayor visibilidad */
+}
+
+.col-md-10 {
+    padding-top: 20px; /* Ajusta esto según sea necesario para el espacio entre el navbar y las tablas */
+}
+
+
+/* Main Content */
+.card {
+    margin-bottom: 20px;
+}
+
+.table-warning {
+    background-color: #fff8e1;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
