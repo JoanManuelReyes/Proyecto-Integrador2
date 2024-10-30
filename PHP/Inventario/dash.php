@@ -1,3 +1,56 @@
+<?php
+require '..\Conexión\conexion.php';
+
+$sqlListProducts="SELECT 
+    p.id AS producto_id,
+    p.Nombre AS nombre,
+    p.Descripcion AS descripcion,
+    COALESCE((SELECT SUM(e.cantidad) FROM Entradas e WHERE e.Producto_id = p.id), 0) AS entradas,
+    COALESCE((SELECT SUM(s.cantidad) FROM Salidas s WHERE s.Producto_id = p.id), 0) AS salidas,
+    p.Stock AS stock,
+    p.Proveedor_id,
+    prov.Nombre
+FROM 
+    Producto p
+JOIN 
+    Proveedor prov ON p.Proveedor_id = prov.id
+WHERE 
+    p.Stock >= 5
+ORDER BY 
+    p.id";
+
+
+$resultListProducts = mysqli_query($conn,$sqlListProducts);
+$vecListProducts=array();
+while($array=mysqli_fetch_array($resultListProducts))  {
+    $vecListProducts[]=$array;
+}
+
+$sqlLowStockProducts="SELECT 
+    p.id AS producto_id,
+    p.Nombre AS nombre,
+    p.Descripcion AS descripcion,
+    COALESCE((SELECT SUM(e.cantidad) FROM Entradas e WHERE e.Producto_id = p.id), 0) AS entradas,
+    COALESCE((SELECT SUM(s.cantidad) FROM Salidas s WHERE s.Producto_id = p.id), 0) AS salidas,
+    p.Stock AS stock,
+    p.Proveedor_id,
+    prov.Nombre
+FROM 
+    Producto p
+JOIN 
+    Proveedor prov ON p.Proveedor_id = prov.id
+WHERE 
+    p.Stock < 5
+ORDER BY 
+    p.id";
+
+$resultLowStockProducts = mysqli_query($conn,$sqlLowStockProducts);
+$vecLowStockProducts=array();
+while($array=mysqli_fetch_array($resultLowStockProducts))  {
+    $vecLowStockProducts[]=$array;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +61,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="..\..\CSS\Inventario\inventario.css">
     <link rel="icon" href="..\..\src\images\logo.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script src="..\..\JS\Inventario\inventario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -23,54 +81,78 @@
         </div>
     </nav>
 
-    <div class="container-fluid mt-0">
+    <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 custom-sidebar">
+            <div class="col-2 custom-sidebar">
                 <div class="nav flex-column">
-                    <a href="#" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
-                    <a href="#" class="nav-link"><i class="bi bi-truck"></i> Seguimiento</a>
-                    <a href="#" class="nav-link"><i class="bi bi-card-list"></i> Pedidos</a>
-                    <a href="#" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                    <a href="dash.php" class="nav-link active"><i class="bi bi-box-seam"></i> Inventario</a>
+                    <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                    <a href="..\Proveedores\dash.php" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
+                    <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                    <a href="..\Configuracion\dash.php" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
                 </div>
             </div>
 
             <!-- Main Content -->
-            <div class="col-md-10">
+            <div class="col-10 mt-3">
                 <!-- Registro Form -->
+                <!-- style="background-color: blue;" -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-7">
                         <div class="card">
                             <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                            <input type="text" class="form-control" placeholder="Producto" onkeyup="filterProducts(this.value)">
+                                        </div>
+                                    </div>
+                                </div>
                                 <h5 class="card-title">Registro:</h5>
-                                <form action="#" method="post">
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Código">
+                                <form id="productForm" action="controller.php" method="post">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="codigo-input" name="codigo" placeholder="Código">
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" class="form-control" id="entradas-input" name="entradas" placeholder="Entradas" min="0" value="0" oninput="validarEntradas(this)">
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-success col" onclick="setAction('register')">Registrar</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Producto">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="producto-input" name="producto" placeholder="Producto">
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" class="form-control" id="salidas-input" name="salidas" placeholder="Salidas" min="0" value="0" oninput="validarSalidas(this)">
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-warning" onclick="setAction('modify')">Modificar</button>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control" placeholder="Descripción">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="codigo_proveedor" name="codigo_proveedor" placeholder="ID Proveedor">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" class="form-control" id="descripcion-input" name="descripcion" placeholder="Descripción">
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <input type="number" class="form-control" placeholder="Stock Inicial">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="number" class="form-control" placeholder="Salidas">
-                                    </div>
-                                    <button type="submit" class="btn btn-success">Registrar</button>
-                                    <button type="button" class="btn btn-warning">Modificar</button>
                                 </form>
                             </div>
                         </div>
                     </div>
 
                     <!-- Restock -->
-                    <div class="col-md-6">
+                    <div class="col-5">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Restock</h5>
+                                <h5 class="card-title text-center">Restock</h5>
+                                <div class="col" data-simplebar style="max-height: 175px;">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -80,84 +162,54 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>C0010</td>
-                                            <td>Tablet Samsung</td>
-                                            <td>3</td>
+                                        <?php
+                                            foreach ($vecLowStockProducts as $key => $value){
+                                            ?>
+                                        <tr class="selectable-row" onclick="fillForm('<?= sprintf('PR%05d', $value[0]) ?>', '<?= $value[1] ?>', '<?= $value[2] ?>', '<?= $value[3] ?>', '<?= $value[4] ?>', '<?= sprintf('PV%05d', $value[6]). ' - ' . $value[7] ?>')">
+                                            <td><?= sprintf("PR%05d", $value[0]) ?></td>
+                                            <td><?=$value[1]?></td>
+                                            <td><?=$value[5]?></td>
                                         </tr>
-                                        <tr>
-                                            <td>C0015</td>
-                                            <td>Celular Samsung</td>
-                                            <td>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td>C0018</td>
-                                            <td>Silla Gamer</td>
-                                            <td>2</td>
-                                        </tr>
+                                        <?php
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tabla de Inventario -->
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead class="table-warning">
+                <div class="row">
+                    <div class="col" data-simplebar style="max-height: 250px;">
+                        <table class="table" id="inventory-table">
+                        <thead>
                                 <tr>
                                     <th scope="col">Código</th>
                                     <th scope="col">Producto</th>
                                     <th scope="col">Descripción</th>
-                                    <th scope="col">Stock Inicial</th>
+                                    <th scope="col">Entradas</th>
                                     <th scope="col">Salidas</th>
                                     <th scope="col">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>C0001</td>
-                                    <td>Audífonos</td>
-                                    <td>Samsung, inalámbricos</td>
-                                    <td>100</td>
-                                    <td>50</td>
-                                    <td>50</td>
+                                <?php
+                                    foreach ($vecListProducts as $key => $value){
+                                ?>
+                                <tr class="selectable-row" onclick="fillForm('<?= sprintf('PR%05d', $value[0]) ?>', '<?= $value[1] ?>', '<?= $value[2] ?>', '<?= $value[3] ?>', '<?= $value[4] ?>', '<?= sprintf('PV%05d', $value[6]). ' - ' . $value[7] ?>')">
+                                    <td><?= sprintf("PR%05d", $value[0]) ?></td>
+                                    <td><?=$value[1]?></td>
+                                    <td><?=$value[2]?></td>
+                                    <td class="text-center"><?=$value[3]?></td>
+                                    <td class="text-center"><?=$value[4]?></td>
+                                    <td class="text-center"><?=$value[5]?></td>
                                 </tr>
-                                <tr>
-                                    <td>C0002</td>
-                                    <td>Cargador</td>
-                                    <td>Samsung, inalámbricos</td>
-                                    <td>150</td>
-                                    <td>65</td>
-                                    <td>85</td>
-                                </tr>
-                                <tr>
-                                    <td>C0003</td>
-                                    <td>Batería portátil</td>
-                                    <td>Samsung, inalámbricos</td>
-                                    <td>85</td>
-                                    <td>30</td>
-                                    <td>55</td>
-                                </tr>
-                                <tr>
-                                    <td>C0004</td>
-                                    <td>Parlantes</td>
-                                    <td>Samsung, inalámbricos</td>
-                                    <td>150</td>
-                                    <td>65</td>
-                                    <td>85</td>
-                                </tr>
-                                <tr>
-                                    <td>C0005</td>
-                                    <td>Cámaras</td>
-                                    <td>Samsung, inalámbricos</td>
-                                    <td>150</td>
-                                    <td>65</td>
-                                    <td>85</td>
-                                </tr>
-                            </tbody>
+                                <?php
+                                    }
+                                ?>
                         </table>
                     </div>
                 </div>
