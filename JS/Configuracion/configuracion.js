@@ -1,10 +1,10 @@
-function fillForm(codigo,nombre,ruc,telefono,correo) {
+function fillForm(codigo,nombre,dni,contrasenia,telefono) {
     // Llenar los inputs con los datos de la fila seleccionada
     document.getElementById('codigo-input').value = codigo;
     document.getElementById('nombre-input').value = nombre;
-    document.getElementById('ruc-input').value = ruc;
+    document.getElementById('dni-input').value = dni;
+    document.getElementById('contrasenia-input').value = contrasenia;
     document.getElementById('telefono-input').value = telefono;
-    document.getElementById('correo_proveedor').value = correo;
 
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "show_products.php?query="+codigo, true);
@@ -21,10 +21,10 @@ function fillForm(codigo,nombre,ruc,telefono,correo) {
 
 function filterProveedores(query) {
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "filter_proveedores.php?query=" + encodeURIComponent(query), true);
+    xhr.open("GET", "filter_usuarios.php?query=" + encodeURIComponent(query), true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            const inventoryTableBody = document.querySelector("#proveedores-table");
+            const inventoryTableBody = document.querySelector("#users-table");
             // Limpiar el tbody antes de insertar los nuevos resultados
             inventoryTableBody.innerHTML = xhr.responseText;
         }
@@ -39,7 +39,7 @@ function setAction(action) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('ruc-input').addEventListener('keypress', function(event) {
+    document.getElementById('dni-input').addEventListener('keypress', function(event) {
         // Solo permite números
         const keyCode = event.keyCode || event.which;
         if (keyCode < 48 || keyCode > 57) {

@@ -8,9 +8,9 @@ $action = $_REQUEST['action'];
 if ($action === 'register') {
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
-    $ruc = $_POST['ruc'];
+    $dni = $_POST['dni'];
     $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
+    $contrasenia = $_POST['contrasenia'];
 
     $numeroCodigo = (int) substr($codigo, 2);
 
@@ -25,7 +25,7 @@ if ($action === 'register') {
             Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Debe ingresar el codigo del proveedor'
+                    text: 'Debe ingresar el codigo del usuario'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
                             window.location.href = 'dash.php';
@@ -41,7 +41,7 @@ if ($action === 'register') {
                 Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Debe ingresar el nombre del proveedor'
+                        text: 'Debe ingresar el nombre del usuario'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
                                 window.location.href = 'dash.php';
@@ -50,14 +50,14 @@ if ($action === 'register') {
             </script>";
             exit;
         } else {
-            if (empty($ruc) || strlen($ruc) !== 11) {
+            if (empty($dni) || strlen($dni) !== 8) {
                 echo "
                 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                 <script>
                     Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Debe ingresar correctamente el RUC del proveedor'
+                            text: 'Debe ingresar correctamente el DNI del usuario'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
                                     window.location.href = 'dash.php';
@@ -73,7 +73,7 @@ if ($action === 'register') {
                         Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                text: 'Debe ingresar correctamente el número de contacto del proveedor'
+                                text: 'Debe ingresar correctamente el número de teléfono del usuario'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
                                         window.location.href = 'dash.php';
@@ -82,14 +82,14 @@ if ($action === 'register') {
                     </script>";
                     exit;
                 } else {
-                    if (empty($correo)) {
+                    if (empty($contrasenia)) {
                         echo "
                         <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                         <script>
                             Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
-                                    text: 'Debe ingresar el correo del proveedor'
+                                    text: 'Debe ingresar la contraseña del usuario'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
                                             window.location.href = 'dash.php';
@@ -98,8 +98,8 @@ if ($action === 'register') {
                         </script>";
                         exit;
                     } else {
-                        //Comprobar si es nuevo el proveedor-de lo contrario mostrar alert
-                        $sql="SELECT id from Proveedor WHERE id='$numeroCodigo'";
+                        //Comprobar si es nuevo el usuario-de lo contrario mostrar alert
+                        $sql="SELECT id FROM Usuario WHERE id='$numeroCodigo'";
                         $consulta1=mysqli_query($conn,$sql);
                         if (mysqli_num_rows($consulta1) > 0) {
                             echo "
@@ -108,7 +108,7 @@ if ($action === 'register') {
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
-                                        text: 'El proveedor no es nuevo, tiene un codigo ya usado'
+                                        text: 'El usuario no es nuevo, tiene un codigo ya usado'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
                                             window.location.href = 'dash.php';
@@ -118,7 +118,7 @@ if ($action === 'register') {
                             exit; // Termina el script aquí
                         } else {
                             //No puede duplicarse el nombre, para evitar duplicación de proveedore, se mostrara alert
-                            $sql="SELECT Nombre from Proveedor WHERE Nombre='$nombre'";
+                            $sql="SELECT nombre_completo from Usuario WHERE nombre_completo='$nombre'";
                             $consulta2=mysqli_query($conn,$sql);
                             if (mysqli_num_rows($consulta2) > 0){
                                 echo "
@@ -127,7 +127,7 @@ if ($action === 'register') {
                                         Swal.fire({
                                             icon: 'error',
                                             title: 'Error',
-                                            text: 'Ya existe un proveedor con el mismo nombre'
+                                            text: 'Ya existe un usuario con el mismo nombre'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
                                                 window.location.href = 'dash.php';
@@ -137,16 +137,16 @@ if ($action === 'register') {
                                 exit;
                             } else { 
                                 //El código será generado al ultimo siguiente-en caso se coloque notificara que será el siguiente al ultimo.
-                                $sql="SELECT id from Proveedor WHERE id='$numeroCodigo'";
+                                $sql="SELECT id from Usuario WHERE id='$numeroCodigo'";
                                 $consulta3=mysqli_query($conn,$sql);
 
                                 if (mysqli_num_rows($consulta3) > 0) {
                                     //Registro con codigo corregido
-                                    $sql3="SELECT COALESCE(MAX(id), 0) + 1 AS next_id FROM Proveedor";
+                                    $sql3="SELECT COALESCE(MAX(id), 0) + 1 AS next_id FROM Usuario";
                                     $result = mysqli_query($conn, $sql3);
                                     $row = mysqli_fetch_assoc($result);
                                     $nextIdP = $row['next_id'];
-                                    $sql="INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('$nextIdP','$nombre','$ruc','$telefono','$correo')";
+                                    $sql="INSERT INTO Usuario (id,nombre_completo,dni,contrasenia,telefono,estado) VALUES ('$nextIdP','$nombre','$dni','$contrasenia','$telefono','1')";
                                     mysqli_query($conn,$sql);
                                     echo "
                                         <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -154,7 +154,7 @@ if ($action === 'register') {
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Listo',
-                                                text: 'Se registró el proveedor correctamente con el ID: " . sprintf("PV%05d", $nextIdP) . "'
+                                                text: 'Se registró el usuario correctamente con el ID: " . sprintf("UR%05d", $nextIdP) . "'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
                                                     window.location.href = 'dash.php';
@@ -164,7 +164,7 @@ if ($action === 'register') {
                                     exit; // Termina el script aquí
                                 } else {
                                     //Registro normal
-                                    $sql="INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('$numeroCodigo','$nombre','$ruc','$telefono','$correo')";
+                                    $sql="INSERT INTO Usuario (id,nombre_completo,dni,contrasenia,telefono,estado) VALUES ('$numeroCodigo','$nombre','$dni','$contrasenia','$telefono','1')";
                                     mysqli_query($conn,$sql);
                                     echo "
                                         <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -172,7 +172,7 @@ if ($action === 'register') {
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Listo',
-                                                text: 'Se registro el proveedor correctamente'
+                                                text: 'Se registro el usuario correctamente'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
                                                     window.location.href = 'dash.php';
@@ -195,9 +195,9 @@ if ($action === 'register') {
 if ($action === 'modify') {
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
-    $ruc = $_POST['ruc'];
+    $dni = $_POST['dni'];
     $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
+    $contrasenia = $_POST['contrasenia'];
 
     $numeroCodigo = (int) substr($codigo, 2);
 
@@ -210,7 +210,7 @@ if ($action === 'modify') {
             Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Debe ingresar el codigo del proveedor'
+                    text: 'Debe ingresar el codigo del usuario'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
                             window.location.href = 'dash.php';
@@ -226,7 +226,7 @@ if ($action === 'modify') {
                 Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Debe ingresar el nombre del proveedor'
+                        text: 'Debe ingresar el nombre del usuario'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
                                 window.location.href = 'dash.php';
@@ -235,14 +235,14 @@ if ($action === 'modify') {
             </script>";
             exit;
         } else {
-            if (empty($ruc) || strlen($ruc) !== 11) {
+            if (empty($dni) || strlen($dni) !== 8) {
                 echo "
                 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                 <script>
                     Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Debe ingresar correctamente el RUC del proveedor'
+                            text: 'Debe ingresar correctamente el DNI del usuario'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
                                     window.location.href = 'dash.php';
@@ -258,7 +258,7 @@ if ($action === 'modify') {
                         Swal.fire({
                                 icon: 'error',
                                 title: 'Error',
-                                text: 'Debe ingresar correctamente el número de contacto del proveedor'
+                                text: 'Debe ingresar correctamente el número de teléfono del usuario'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
                                         window.location.href = 'dash.php';
@@ -267,14 +267,14 @@ if ($action === 'modify') {
                     </script>";
                     exit;
                 } else {
-                    if (empty($correo)) {
+                    if (empty($contrasenia)) {
                         echo "
                         <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                         <script>
                             Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
-                                    text: 'Debe ingresar el correo del proveedor'
+                                    text: 'Debe ingresar la contraseña del usuario'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
                                             window.location.href = 'dash.php';
@@ -284,28 +284,28 @@ if ($action === 'modify') {
                         exit;
                     } else {
                         //Comprobar que el código exista, esto no se puede modificar
-                        $sql="SELECT id from Proveedor WHERE id='$numeroCodigo'";
+                        $sql="SELECT id from Usuario WHERE id='$numeroCodigo'";
                         $consulta1=mysqli_query($conn,$sql);
                         if (mysqli_num_rows($consulta1) > 0){
-                            //se mostara que se quiere aplicar los cambios en el producto ya registrado
-                            $sql="SELECT Nombre FROM Proveedor WHERE id='$numeroCodigo'";
+                            //se mostara que se quiere aplicar los cambios en el usuario ya registrado
+                            $sql="SELECT nombre_completo FROM Usuario WHERE id='$numeroCodigo'";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
-                            $nombreOrig = $row['Nombre'];
+                            $nombreOrig = $row['nombre_completo'];
                             echo "
                                 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                                 <script>
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Atención',
-                                        text: '¿Desea aplicar los cambios para el proveedor " . $nombreOrig . " con ID: " . $codigo . "?',
+                                        text: '¿Desea aplicar los cambios para el usuario " . $nombreOrig . " con ID: " . $codigo . "?',
                                         showCancelButton: true,
                                         confirmButtonText: 'Sí, aplicar',
                                         cancelButtonText: 'Cancelar'
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirigir a la acción de aplicar cambios en PHP
-                                            window.location.href = 'controller.php?action=apply_changes&proveedor_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&ruc={$ruc}&telefono={$telefono}&correo=" . urlencode($correo) . "';
+                                            window.location.href = 'controller.php?action=apply_changes&user_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&dni={$dni}&telefono={$telefono}&contrasenia=" . urlencode($contrasenia) . "';
                                         } else {
                                             // Redirigir al dashboard si se cancela
                                             window.location.href = 'dash.php';
@@ -321,7 +321,7 @@ if ($action === 'modify') {
                                 Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
-                                        text: 'El proveedor no existe'
+                                        text: 'El usuario no existe'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
                                                 window.location.href = 'dash.php';
@@ -340,13 +340,126 @@ if ($action === 'modify') {
 //aplicar cambios
 if ($action === 'apply_changes') {
     echo "<h1></h1>";
-    $codigoProducto = $_GET['proveedor_id'] ?? '';
+    $codigo = $_GET['user_id'] ?? '';
     $nombre = $_GET['nombre'] ?? '';
-    $ruc = $_GET['ruc'] ?? '';
+    $dni = $_GET['dni'] ?? '';
     $telefono = $_GET['telefono'] ?? '';
-    $correo = $_GET['correo'] ?? '';
+    $contrasenia = $_GET['contrasenia'] ?? '';
 
-    $sql="UPDATE Proveedor SET Nombre='$nombre', RUC='$ruc', telefono='$telefono', correo='$correo' WHERE id='$codigoProducto'";
+
+    $sql="SELECT contrasenia FROM Usuario WHERE id='$codigo'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $contraOrig = $row['contrasenia'];
+
+    if($contraOrig==$contrasenia){
+        $sql="UPDATE Usuario SET nombre_completo='$nombre', dni='$dni', telefono='$telefono' WHERE id='$codigo'";
+        mysqli_query($conn,$sql);
+    }else{
+        $pass = hash('sha256', $contrasenia);
+        $sql="UPDATE Usuario SET nombre_completo='$nombre', dni='$dni', telefono='$telefono', contrasenia='$pass' WHERE id='$codigo'";
+        mysqli_query($conn,$sql);
+    }
+
+    echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Listo',
+            text: 'Se hicieron los cambios correctamente'
+        }).then((result) => {
+            if (result.isConfirmed || result.isDismissed) {
+                window.location.href = 'dash.php';
+            }
+        });
+        </script>";
+    exit;
+} 
+
+
+
+//Eliminar
+if ($action === 'delete') {
+    $codigo = $_POST['codigo'];
+
+    $numeroCodigo = (int) substr($codigo, 2);
+
+    echo "<h1></h1>";
+    //Comprobación de variables
+    if (empty($codigo)) {
+        echo "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script>
+            Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Debe ingresar el codigo del usuario'
+                    }).then((result) => {
+                        if (result.isConfirmed || result.isDismissed) {
+                            window.location.href = 'dash.php';
+                        }
+                    });
+        </script>";
+        exit;
+    } else {
+        //Comprobar que el código exista
+        $sql="SELECT id from Usuario WHERE id='$numeroCodigo'";
+        $consulta1=mysqli_query($conn,$sql);
+        if (mysqli_num_rows($consulta1) > 0){
+            //se mostara que se quiere aplicar los cambios en el usuario ya registrado
+            $sql="SELECT nombre_completo FROM Usuario WHERE id='$numeroCodigo'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $nombreOrig = $row['nombre_completo'];
+            echo "
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Atención',
+                        text: '¿Desea eliminar al usuario " . $nombreOrig . " con ID: " . $codigo . "?',
+                        showCancelButton: true,
+                        confirmButtonText: 'Sí, aplicar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirigir a la acción de aplicar cambios en PHP
+                            window.location.href = 'controller.php?action=apply_delete&user_id={$numeroCodigo}';
+                        } else {
+                            // Redirigir al dashboard si se cancela
+                            window.location.href = 'dash.php';
+                        }
+                    });
+                </script>
+                ";
+                exit;
+        } else {
+            echo "
+            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            <script>
+                Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'El usuario no existe'
+                        }).then((result) => {
+                            if (result.isConfirmed || result.isDismissed) {
+                                window.location.href = 'dash.php';
+                            }
+                        });
+            </script>";
+            exit;
+        }
+    }       
+}
+
+
+//aplicar eliminar
+if ($action === 'apply_delete') {
+    echo "<h1></h1>";
+    $codigo = $_GET['user_id'] ?? '';
+
+    $sql="UPDATE Usuario SET estado='0' WHERE id='$codigo'";
     mysqli_query($conn,$sql);
 
     echo "
@@ -363,8 +476,5 @@ if ($action === 'apply_changes') {
         });
         </script>";
     exit;
-}                  
-
-
-
+} 
 ?>

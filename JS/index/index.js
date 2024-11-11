@@ -1,13 +1,3 @@
-const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('error')) {
-        const errorMessage = urlParams.get('error');
-        if (errorMessage === 'usuario_no_encontrado') {
-            alert('Usuario no existe o datos incorrectos.');
-        }
-    }
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
     // Seleccionar el campo de usuario y contraseña
     const usernameInput = document.getElementById('username');

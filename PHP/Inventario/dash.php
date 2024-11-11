@@ -75,9 +75,16 @@ while($array=mysqli_fetch_array($resultLowStockProducts))  {
             <a class="navbar-brand" href="#">
                 <img src="..\..\src\images\logo.jpg" alt="Logo SnowBox" class="logo-img">
             </a>
+            <?php 
+                if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+            ?>
             <span class="navbar-text text-white">
                 Administrador
             </span>
+            <?php 
+                } 
+            ?>
+            <a href="..\..\index.html" class="text-white"><i class="bi bi-box-arrow-left"></i></a>
         </div>
     </nav>
 
@@ -86,11 +93,24 @@ while($array=mysqli_fetch_array($resultLowStockProducts))  {
             <!-- Sidebar -->
             <div class="col-2 custom-sidebar">
                 <div class="nav flex-column">
-                    <a href="dash.php" class="nav-link active"><i class="bi bi-box-seam"></i> Inventario</a>
+                    <?php 
+                        if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+                    ?>
+                    <a href="dash.php?admin=1" class="nav-link active"><i class="bi bi-box-seam"></i> Inventario</a>
                     <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
-                    <a href="..\Proveedores\dash.php" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
+                    <a href="..\Proveedores\dash.php?admin=1" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
                     <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
-                    <a href="..\Configuracion\dash.php" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                    <a href="..\Configuracion\dash.php?admin=1" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                    <?php 
+                        } else {
+                    ?>
+                        <a href="dash.php?admin=0" class="nav-link active"><i class="bi bi-box-seam"></i> Inventario</a>
+                        <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                        <a href="..\Proveedores\dash.php?admin=0" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
+                        <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
 

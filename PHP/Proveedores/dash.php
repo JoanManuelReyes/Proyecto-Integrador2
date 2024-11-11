@@ -36,9 +36,16 @@ while($array=mysqli_fetch_array($resultListProv))  {
             <a class="navbar-brand" href="#">
                 <img src="..\..\src\images\logo.jpg" alt="Logo SnowBox" class="logo-img">
             </a>
+            <?php 
+                if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+            ?>
             <span class="navbar-text text-white">
                 Administrador
             </span>
+            <?php 
+                } 
+            ?>
+            <a href="..\..\index.html" class="text-white"><i class="bi bi-box-arrow-left"></i></a>
         </div>
     </nav>
 
@@ -47,11 +54,24 @@ while($array=mysqli_fetch_array($resultListProv))  {
             <!-- Sidebar -->
             <div class="col-2 custom-sidebar">
                 <div class="nav flex-column">
-                    <a href="..\Inventario\dash.php" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
-                    <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
-                    <a href="dash.php" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
-                    <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
-                    <a href="..\Configuracion\dash.php" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                    <?php 
+                        if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+                    ?>
+                        <a href="..\Inventario\dash.php?admin=1" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
+                        <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                        <a href="dash.php?admin=1" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
+                        <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                        <a href="..\Configuracion\dash.php?admin=1" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                    <?php 
+                        } else {
+                    ?>
+                        <a href="..\Inventario\dash.php?admin=0" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
+                        <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                        <a href="dash.php?admin=0" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
+                        <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
 
@@ -126,7 +146,7 @@ while($array=mysqli_fetch_array($resultListProv))  {
                         <table class="table" id="proveedores-table">
                         <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Código</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">RUC</th>
                                     <th class="text-center" scope="col">Contacto</th>
