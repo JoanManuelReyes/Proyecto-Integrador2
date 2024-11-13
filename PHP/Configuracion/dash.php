@@ -17,7 +17,7 @@ while($array=mysqli_fetch_array($resultListUsers))  {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuracion SnowBox</title>
+    <title>Configuración SnowBox</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="..\..\CSS\Configuracion\configuracion.css">
@@ -48,11 +48,11 @@ while($array=mysqli_fetch_array($resultListUsers))  {
             <!-- Sidebar -->
             <div class="col-2 custom-sidebar">
                 <div class="nav flex-column">
-                    <a href="..\Inventario\dash.php?admin=1" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
-                    <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
-                    <a href="..\Proveedores\dash.php?admin=1" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
-                    <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
-                    <a href="dash.php?admin=1" class="nav-link active"><i class="bi bi-gear"></i> Configuración</a>
+                    <a href="..\Inventario\dash.php?user=1" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
+                    <a href="..\Pedidos\dash.php?user=1" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                    <a href="..\Proveedores\dash.php?user=1" class="nav-link"><i class="bi bi-globe"></i> Proveedores</a>
+                    <a href="..\Reportes\dash.php?user=1" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                    <a href="dash.php?user=1" class="nav-link active"><i class="bi bi-gear"></i> Configuración</a>
                 </div>
             </div>
 
@@ -70,7 +70,7 @@ while($array=mysqli_fetch_array($resultListUsers))  {
                                             <div class="col">
                                                 <div class="input-group">
                                                     <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                                    <input type="text" class="form-control" placeholder="Proveedor" onkeyup="filterProveedores(this.value)">
+                                                    <input type="text" class="form-control" placeholder="Usuario" onkeyup="filterProveedores(this.value)">
                                                 </div>
                                             </div>
                                         </div>
@@ -78,6 +78,7 @@ while($array=mysqli_fetch_array($resultListUsers))  {
                                             <h5 class="card-title">Registro:</h5>
                                         </div>
                                         <form id="productForm" action="controller.php" method="post">
+                                            <input type="hidden" name="user" value="<?= $_GET['user'] ?>">
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row mb-2">

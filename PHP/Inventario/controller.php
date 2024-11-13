@@ -4,8 +4,11 @@ require '..\Conexión\conexion.php';
 //Capturamos la acción
 $action = $_REQUEST['action'];
 
+
 //Registrar
 if ($action === 'register') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $entradas = $_POST['entradas'];
     $producto = $_POST['producto'];
@@ -32,7 +35,7 @@ if ($action === 'register') {
                     text: 'El producto no es nuevo, tiene un codigo ya usado'
                 }).then((result) => {
                     if (result.isConfirmed || result.isDismissed) {
-                        window.location.href = 'dash.php';
+                        window.location.href = 'dash.php?user=$iduser';
                     }
                 });
             </script>";
@@ -58,14 +61,14 @@ if ($action === 'register') {
                                 text: 'Ya existe un producto con el mismo nombre'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                         </script>";
                     exit;
                 } else {
                     //Las entradas sí o sí se deben registrar
-                    if (empty($entradas) || $entradas === "0") {
+                    if (empty($entradas)) {
                         echo "
                             <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
                             <script>
@@ -75,7 +78,7 @@ if ($action === 'register') {
                                     text: 'Debe registrar entradas'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                             </script>";
@@ -91,7 +94,7 @@ if ($action === 'register') {
                                         text: 'Debe ingresar el código del producto'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>";
@@ -107,7 +110,7 @@ if ($action === 'register') {
                                         text: 'Debe ingresar el nombre del producto'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>";
@@ -123,7 +126,7 @@ if ($action === 'register') {
                                             text: 'Debe ingresar el codigo del proveedor'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                                     </script>";
@@ -139,7 +142,7 @@ if ($action === 'register') {
                                                 text: 'Debe ingresar la descripción el producto'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                         </script>";
@@ -176,7 +179,7 @@ if ($action === 'register') {
                                                         text: 'Se registró el producto correctamente con el ID: " . sprintf("PR%05d", $nextIdP) . "'
                                                     }).then((result) => {
                                                         if (result.isConfirmed || result.isDismissed) {
-                                                            window.location.href = 'dash.php';
+                                                            window.location.href = 'dash.php?user=$iduser';
                                                         }
                                                     });
                                                 </script>";
@@ -204,7 +207,7 @@ if ($action === 'register') {
                                                         text: 'Se registro el producto correctamente'
                                                     }).then((result) => {
                                                         if (result.isConfirmed || result.isDismissed) {
-                                                            window.location.href = 'dash.php';
+                                                            window.location.href = 'dash.php?user=$iduser';
                                                         }
                                                     });
                                                 </script>";
@@ -227,7 +230,7 @@ if ($action === 'register') {
                             text: 'No se deben registrar salidas'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
                     </script>";
@@ -243,7 +246,7 @@ if ($action === 'register') {
                         text: 'No existe el proveedor'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
                 </script>";
@@ -255,6 +258,8 @@ if ($action === 'register') {
 
 //Modificar
 if ($action === 'modify') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $entradas = $_POST['entradas'];
     $producto = $_POST['producto'];
@@ -282,7 +287,7 @@ if ($action === 'modify') {
                     text: 'Debe ingresar el código del producto'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -298,7 +303,7 @@ if ($action === 'modify') {
                         text: 'Debe ingresar el nombre del producto'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -314,7 +319,7 @@ if ($action === 'modify') {
                             text: 'Debe ingresar el código del proveedor'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                 </script>";
@@ -330,7 +335,7 @@ if ($action === 'modify') {
                                 text: 'Debe ingresar la descripción del proveedor'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                     </script>";
@@ -377,10 +382,10 @@ if ($action === 'modify') {
                                                 }).then((result) => {
                                                     if (result.isConfirmed) {
                                                         // Redirigir a la acción de aplicar cambios en PHP
-                                                        window.location.href = 'controller.php?action=apply_changes&product_id={$numeroCodigo}&numEntradas={$entradas}&nomProducto=" . urlencode($producto) . "&numSalidas={$salidas}&numProveedor={$numeroProveedor}&descrip=" . urlencode($descripcion) . "';
+                                                        window.location.href = 'controller.php?action=apply_changes&product_id={$numeroCodigo}&numEntradas={$entradas}&nomProducto=" . urlencode($producto) . "&numSalidas={$salidas}&numProveedor={$numeroProveedor}&descrip=" . urlencode($descripcion) . "&user={$iduser}';
                                                     } else {
                                                         // Redirigir al dashboard si se cancela
-                                                        window.location.href = 'dash.php';
+                                                        window.location.href = 'dash.php?user=$iduser';
                                                     }
                                                 });
                                             </script>
@@ -396,7 +401,7 @@ if ($action === 'modify') {
                                                     text: 'No existe el proveedor'
                                                 }).then((result) => {
                                                     if (result.isConfirmed || result.isDismissed) {
-                                                        window.location.href = 'dash.php';
+                                                        window.location.href = 'dash.php?user=$iduser';
                                                     }
                                                 });
                                             </script>";
@@ -412,7 +417,7 @@ if ($action === 'modify') {
                                                 text: 'Las salidas no pueden ser mayores a las entradas'
                                                 }).then((result) => {
                                                     if (result.isConfirmed || result.isDismissed) {
-                                                        window.location.href = 'dash.php';
+                                                        window.location.href = 'dash.php?user=$iduser';
                                                     }
                                                 });
                                     </script>";
@@ -428,7 +433,7 @@ if ($action === 'modify') {
                                             text: 'Las salidas que se ingresan debe ser mayor a las ya registradas'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                 </script>";
@@ -444,7 +449,7 @@ if ($action === 'modify') {
                                         text: 'Las entradas que se ingresan debe ser mayor a las ya registradas'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                             </script>";
@@ -460,7 +465,7 @@ if ($action === 'modify') {
                                     text: 'El producto no existe'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                         </script>";
@@ -475,6 +480,8 @@ if ($action === 'modify') {
 //aplicar cambios
 if ($action === 'apply_changes') {
     echo "<h1></h1>";
+    $iduser = $_GET['user'];
+
     $codigoProducto = $_GET['product_id'] ?? '';
     $numEntradas = $_GET['numEntradas'] ?? 0;
     $nombreProducto = $_GET['nomProducto'] ?? '';
@@ -528,7 +535,7 @@ if ($action === 'apply_changes') {
             text: 'Se hicieron los cambios correctamente'
         }).then((result) => {
             if (result.isConfirmed || result.isDismissed) {
-                window.location.href = 'dash.php';
+                window.location.href = 'dash.php?user=$iduser';
             }
         });
         </script>";

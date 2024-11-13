@@ -37,7 +37,7 @@ while($array=mysqli_fetch_array($resultListProv))  {
                 <img src="..\..\src\images\logo.jpg" alt="Logo SnowBox" class="logo-img">
             </a>
             <?php 
-                if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+                if (isset($_GET['user']) && $_GET['user'] == 1) {
             ?>
             <span class="navbar-text text-white">
                 Administrador
@@ -55,20 +55,20 @@ while($array=mysqli_fetch_array($resultListProv))  {
             <div class="col-2 custom-sidebar">
                 <div class="nav flex-column">
                     <?php 
-                        if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+                        if (isset($_GET['user']) && $_GET['user'] == 1) {
                     ?>
-                        <a href="..\Inventario\dash.php?admin=1" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
-                        <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
-                        <a href="dash.php?admin=1" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
-                        <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
-                        <a href="..\Configuracion\dash.php?admin=1" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
+                        <a href="..\Inventario\dash.php?user=1" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
+                        <a href="..\Pedidos\dash.php?user=1" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                        <a href="dash.php?user=1" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
+                        <a href="..\Reportes\dash.php?user=1" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                        <a href="..\Configuracion\dash.php?user=1" class="nav-link"><i class="bi bi-gear"></i> Configuración</a>
                     <?php 
                         } else {
                     ?>
-                        <a href="..\Inventario\dash.php?admin=0" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
-                        <a href="#" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
-                        <a href="dash.php?admin=0" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
-                        <a href="#" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
+                        <a href="..\Inventario\dash.php?user=<?php echo urlencode($_GET['user']); ?>" class="nav-link"><i class="bi bi-box-seam"></i> Inventario</a>
+                        <a href="..\Pedidos\dash.php?user=<?php echo urlencode($_GET['user']); ?>" class="nav-link"><i class="bi bi-truck"></i> Pedidos y Devoluciones</a>
+                        <a href="dash.php?user=<?php echo urlencode($_GET['user']); ?>" class="nav-link active"><i class="bi bi-globe"></i> Proveedores</a>
+                        <a href="..\Reportes\dash.php?user=<?php echo urlencode($_GET['user']); ?>" class="nav-link"><i class="bi bi-clipboard-data"></i> Reportes</a>
                     <?php
                         }
                     ?>

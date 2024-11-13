@@ -6,6 +6,8 @@ $action = $_REQUEST['action'];
 
 //Registrar
 if ($action === 'register') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
     $ruc = $_POST['ruc'];
@@ -28,7 +30,7 @@ if ($action === 'register') {
                     text: 'Debe ingresar el codigo del proveedor'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -44,7 +46,7 @@ if ($action === 'register') {
                         text: 'Debe ingresar el nombre del proveedor'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -60,7 +62,7 @@ if ($action === 'register') {
                             text: 'Debe ingresar correctamente el RUC del proveedor'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                 </script>";
@@ -76,7 +78,7 @@ if ($action === 'register') {
                                 text: 'Debe ingresar correctamente el número de contacto del proveedor'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                     </script>";
@@ -92,7 +94,7 @@ if ($action === 'register') {
                                     text: 'Debe ingresar el correo del proveedor'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                         </script>";
@@ -111,7 +113,7 @@ if ($action === 'register') {
                                         text: 'El proveedor no es nuevo, tiene un codigo ya usado'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>";
@@ -130,7 +132,7 @@ if ($action === 'register') {
                                             text: 'Ya existe un proveedor con el mismo nombre'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                                     </script>";
@@ -157,7 +159,7 @@ if ($action === 'register') {
                                                 text: 'Se registró el proveedor correctamente con el ID: " . sprintf("PV%05d", $nextIdP) . "'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                         </script>";
@@ -175,7 +177,7 @@ if ($action === 'register') {
                                                 text: 'Se registro el proveedor correctamente'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                         </script>";
@@ -193,6 +195,8 @@ if ($action === 'register') {
 
 //Modificar
 if ($action === 'modify') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
     $ruc = $_POST['ruc'];
@@ -213,7 +217,7 @@ if ($action === 'modify') {
                     text: 'Debe ingresar el codigo del proveedor'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -229,7 +233,7 @@ if ($action === 'modify') {
                         text: 'Debe ingresar el nombre del proveedor'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -245,7 +249,7 @@ if ($action === 'modify') {
                             text: 'Debe ingresar correctamente el RUC del proveedor'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                 </script>";
@@ -261,7 +265,7 @@ if ($action === 'modify') {
                                 text: 'Debe ingresar correctamente el número de contacto del proveedor'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                     </script>";
@@ -277,7 +281,7 @@ if ($action === 'modify') {
                                     text: 'Debe ingresar el correo del proveedor'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                         </script>";
@@ -305,10 +309,10 @@ if ($action === 'modify') {
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirigir a la acción de aplicar cambios en PHP
-                                            window.location.href = 'controller.php?action=apply_changes&proveedor_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&ruc={$ruc}&telefono={$telefono}&correo=" . urlencode($correo) . "';
+                                            window.location.href = 'controller.php?action=apply_changes&proveedor_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&ruc={$ruc}&telefono={$telefono}&correo=" . urlencode($correo) . "&user={$iduser}';
                                         } else {
                                             // Redirigir al dashboard si se cancela
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>
@@ -324,7 +328,7 @@ if ($action === 'modify') {
                                         text: 'El proveedor no existe'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                             </script>";
@@ -340,6 +344,8 @@ if ($action === 'modify') {
 //aplicar cambios
 if ($action === 'apply_changes') {
     echo "<h1></h1>";
+    $iduser = $_GET['user'];
+
     $codigoProducto = $_GET['proveedor_id'] ?? '';
     $nombre = $_GET['nombre'] ?? '';
     $ruc = $_GET['ruc'] ?? '';
@@ -358,7 +364,7 @@ if ($action === 'apply_changes') {
             text: 'Se hicieron los cambios correctamente'
         }).then((result) => {
             if (result.isConfirmed || result.isDismissed) {
-                window.location.href = 'dash.php';
+                window.location.href = 'dash.php?user=$iduser';
             }
         });
         </script>";

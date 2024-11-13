@@ -19,9 +19,9 @@ if ($action === 'login') {
 
     if ($consulta && mysqli_num_rows($consulta) > 0) {
         if ($array['id'] == 1) {
-            header("Location: ../Inventario/dash.php?admin=1");
+            header("Location: ../Inventario/dash.php?user=1");
         } else {
-            header("Location: ../Inventario/dash.php?admin=0");
+            header("Location: ../Inventario/dash.php?user=". $array['id']);
         }
         exit;
     } else {

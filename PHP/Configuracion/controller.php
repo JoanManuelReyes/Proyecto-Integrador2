@@ -6,6 +6,8 @@ $action = $_REQUEST['action'];
 
 //Registrar
 if ($action === 'register') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
     $dni = $_POST['dni'];
@@ -28,7 +30,7 @@ if ($action === 'register') {
                     text: 'Debe ingresar el codigo del usuario'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -44,7 +46,7 @@ if ($action === 'register') {
                         text: 'Debe ingresar el nombre del usuario'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -60,7 +62,7 @@ if ($action === 'register') {
                             text: 'Debe ingresar correctamente el DNI del usuario'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                 </script>";
@@ -76,7 +78,7 @@ if ($action === 'register') {
                                 text: 'Debe ingresar correctamente el número de teléfono del usuario'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                     </script>";
@@ -92,7 +94,7 @@ if ($action === 'register') {
                                     text: 'Debe ingresar la contraseña del usuario'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                         </script>";
@@ -111,7 +113,7 @@ if ($action === 'register') {
                                         text: 'El usuario no es nuevo, tiene un codigo ya usado'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>";
@@ -130,7 +132,7 @@ if ($action === 'register') {
                                             text: 'Ya existe un usuario con el mismo nombre'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                                     </script>";
@@ -157,7 +159,7 @@ if ($action === 'register') {
                                                 text: 'Se registró el usuario correctamente con el ID: " . sprintf("UR%05d", $nextIdP) . "'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                         </script>";
@@ -175,7 +177,7 @@ if ($action === 'register') {
                                                 text: 'Se registro el usuario correctamente'
                                             }).then((result) => {
                                                 if (result.isConfirmed || result.isDismissed) {
-                                                    window.location.href = 'dash.php';
+                                                    window.location.href = 'dash.php?user=$iduser';
                                                 }
                                             });
                                         </script>";
@@ -193,6 +195,8 @@ if ($action === 'register') {
 
 //Modificar
 if ($action === 'modify') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
     $nombre = $_POST['nombre'];
     $dni = $_POST['dni'];
@@ -213,7 +217,7 @@ if ($action === 'modify') {
                     text: 'Debe ingresar el codigo del usuario'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -229,7 +233,7 @@ if ($action === 'modify') {
                         text: 'Debe ingresar el nombre del usuario'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -245,7 +249,7 @@ if ($action === 'modify') {
                             text: 'Debe ingresar correctamente el DNI del usuario'
                             }).then((result) => {
                                 if (result.isConfirmed || result.isDismissed) {
-                                    window.location.href = 'dash.php';
+                                    window.location.href = 'dash.php?user=$iduser';
                                 }
                             });
                 </script>";
@@ -261,7 +265,7 @@ if ($action === 'modify') {
                                 text: 'Debe ingresar correctamente el número de teléfono del usuario'
                                 }).then((result) => {
                                     if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php';
+                                        window.location.href = 'dash.php?user=$iduser';
                                     }
                                 });
                     </script>";
@@ -277,7 +281,7 @@ if ($action === 'modify') {
                                     text: 'Debe ingresar la contraseña del usuario'
                                     }).then((result) => {
                                         if (result.isConfirmed || result.isDismissed) {
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                         </script>";
@@ -305,10 +309,10 @@ if ($action === 'modify') {
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             // Redirigir a la acción de aplicar cambios en PHP
-                                            window.location.href = 'controller.php?action=apply_changes&user_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&dni={$dni}&telefono={$telefono}&contrasenia=" . urlencode($contrasenia) . "';
+                                            window.location.href = 'controller.php?action=apply_changes&user_id={$numeroCodigo}&nombre=" . urlencode($nombre) . "&dni={$dni}&telefono={$telefono}&contrasenia=" . urlencode($contrasenia) . "&user={$iduser}';
                                         } else {
                                             // Redirigir al dashboard si se cancela
-                                            window.location.href = 'dash.php';
+                                            window.location.href = 'dash.php?user=$iduser';
                                         }
                                     });
                                 </script>
@@ -324,7 +328,7 @@ if ($action === 'modify') {
                                         text: 'El usuario no existe'
                                         }).then((result) => {
                                             if (result.isConfirmed || result.isDismissed) {
-                                                window.location.href = 'dash.php';
+                                                window.location.href = 'dash.php?user=$iduser';
                                             }
                                         });
                             </script>";
@@ -340,6 +344,8 @@ if ($action === 'modify') {
 //aplicar cambios
 if ($action === 'apply_changes') {
     echo "<h1></h1>";
+    $iduser = $_GET['user'];
+
     $codigo = $_GET['user_id'] ?? '';
     $nombre = $_GET['nombre'] ?? '';
     $dni = $_GET['dni'] ?? '';
@@ -370,7 +376,7 @@ if ($action === 'apply_changes') {
             text: 'Se hicieron los cambios correctamente'
         }).then((result) => {
             if (result.isConfirmed || result.isDismissed) {
-                window.location.href = 'dash.php';
+                window.location.href = 'dash.php?user=$iduser';
             }
         });
         </script>";
@@ -381,6 +387,8 @@ if ($action === 'apply_changes') {
 
 //Eliminar
 if ($action === 'delete') {
+    $iduser = $_POST['user'];
+
     $codigo = $_POST['codigo'];
 
     $numeroCodigo = (int) substr($codigo, 2);
@@ -397,7 +405,7 @@ if ($action === 'delete') {
                     text: 'Debe ingresar el codigo del usuario'
                     }).then((result) => {
                         if (result.isConfirmed || result.isDismissed) {
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
         </script>";
@@ -425,10 +433,10 @@ if ($action === 'delete') {
                     }).then((result) => {
                         if (result.isConfirmed) {
                             // Redirigir a la acción de aplicar cambios en PHP
-                            window.location.href = 'controller.php?action=apply_delete&user_id={$numeroCodigo}';
+                            window.location.href = 'controller.php?action=apply_delete&user_id={$numeroCodigo}&user={$iduser}';
                         } else {
                             // Redirigir al dashboard si se cancela
-                            window.location.href = 'dash.php';
+                            window.location.href = 'dash.php?user=$iduser';
                         }
                     });
                 </script>
@@ -444,7 +452,7 @@ if ($action === 'delete') {
                         text: 'El usuario no existe'
                         }).then((result) => {
                             if (result.isConfirmed || result.isDismissed) {
-                                window.location.href = 'dash.php';
+                                window.location.href = 'dash.php?user=$iduser';
                             }
                         });
             </script>";
@@ -457,6 +465,8 @@ if ($action === 'delete') {
 //aplicar eliminar
 if ($action === 'apply_delete') {
     echo "<h1></h1>";
+    $iduser = $_GET['user'];
+
     $codigo = $_GET['user_id'] ?? '';
 
     $sql="UPDATE Usuario SET estado='0' WHERE id='$codigo'";
@@ -471,7 +481,7 @@ if ($action === 'apply_delete') {
             text: 'Se hicieron los cambios correctamente'
         }).then((result) => {
             if (result.isConfirmed || result.isDismissed) {
-                window.location.href = 'dash.php';
+                window.location.href = 'dash.php?user=$iduser';
             }
         });
         </script>";
