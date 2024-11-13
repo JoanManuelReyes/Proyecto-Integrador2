@@ -53,6 +53,9 @@ if ($startDate && $endDate) {
     $sql .= " AND s.fecha BETWEEN '".mysqli_real_escape_string($conn, $startDate)."' AND '".mysqli_real_escape_string($conn, $endDate)."'";
 }
 
+// Agregar UNION para Devoluciones, usando el mismo filtro de producto si existe
+$sql .= " UNION ALL SELECT 'Devolución' AS Tipo, CONCAT('DV', RIGHT(CONCAT('00000', s.id), 5)) AS MovimientoID, s.Producto_id AS ProductoID, CONCAT(p.Nombre,' - ','PR', RIGHT(CONCAT('00000', p.id), 5)) AS Producto, s.cantidad AS Cantidad, s.fecha AS Fecha FROM Solicitud s INNER JOIN Producto p ON s.Producto_id = p.id WHERE s.Tipo='Devolución'";
+
 $sql .= " ORDER BY ProductoID, Fecha, MovimientoID";
 
 $result = mysqli_query($conn, $sql);

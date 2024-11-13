@@ -78,23 +78,49 @@ if ($action === 'register') {
                             </script>";
                         exit; // Termina el script aquí
                     } else {
-                        //Registrar Devolucion
-                        $sql="INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('$nextIdP','$iduser','$producto','Devolución','$descripcion','$cantidad','$fechaActual','En espera');";
-                        mysqli_query($conn,$sql);
-                        echo "
-                            <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-                            <script>
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Listo',
-                                    text: 'Se registró la devolución del producto con el ID: " . sprintf("EV%05d", $nextIdP) . "'
-                                }).then((result) => {
-                                    if (result.isConfirmed || result.isDismissed) {
-                                        window.location.href = 'dash.php?user=$iduser';
-                                    }
-                                });
-                            </script>";
-                        exit; // Termina el script aquí
+                        $sql="SELECT Stock FROM Producto p WHERE p.id='$producto'";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $stock = $row['Stock'];
+
+                        if($stock-$cantidad>=0){
+                            $stock=$stock-$cantidad;
+
+                            $sql="UPDATE Producto SET Stock='$stock' WHERE id='$producto'";
+                            mysqli_query($conn,$sql);
+
+                            $sql="INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('$nextIdP','$iduser','$producto','Devolución','$descripcion','$cantidad','$fechaActual','En espera')";
+                            mysqli_query($conn,$sql);
+                            echo "
+                                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                                <script>
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Listo',
+                                        text: 'Se registró la devolución del producto con el ID: " . sprintf("EV%05d", $nextIdP) . "'
+                                    }).then((result) => {
+                                        if (result.isConfirmed || result.isDismissed) {
+                                            window.location.href = 'dash.php?user=$iduser';
+                                        }
+                                    });
+                                </script>";
+                            exit; // Termina el script aquí
+                        }else{
+                            echo "
+                                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                                <script>
+                                    Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: 'La cantidad a devolver del producto es mayor al stock actual'
+                                            }).then((result) => {
+                                                if (result.isConfirmed || result.isDismissed) {
+                                                    window.location.href = 'dash.php?user=$iduser';
+                                                }
+                                            });
+                                </script>";
+                                exit;
+                        }
                     }
 
                 } else {
