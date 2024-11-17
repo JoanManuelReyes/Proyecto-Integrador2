@@ -88,30 +88,30 @@ INSERT INTO Usuario (id,nombre_completo,dni,contrasenia,telefono,estado) VALUES 
 INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('1','JBL','20123456781','987654321','negocios@JBL.com');
 INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('2','Sony','20123456782','923456789','negocios@Sony.com');
 INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('3','Bose','20123456783','912345678','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('4','Sennheiser','20123456784','934567890','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('5','Samsung','20123456785','956789012','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('6','Apple','20123456786','978901234','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('7','Xiaomi','20123456787','901234567','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('8','Huawei','20123456788','923456781','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('9','Anker','20123456789','945678901','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('10','Wacom','20123456790','967890123','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('11','HP','20123456791','989012345','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('12','Dell','20123456792','901234569','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('13','ASUS','20123456793','923456784','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('14','Kingston','20123456794','945678903','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('15','Amazon','20123456795','967890125','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('16','Google','20123456796','989012347','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('17','Philips','20123456797','901234571','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('18','TP-Link','20123456798','923456786','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('19','Insta360','20123456799','945678905','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('20','GoPro','20123456800','967890127','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('21','DJI','20123456801','989012349','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('22','LG','20123456802','901234573','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('23','Microsoft','20123456803','923456788','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('24','CantonImportsPeru','20123456804','945678907','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('25','Rode','20123456805','967890129','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('26','Focusrite','20123456806','989012351','negocios@Bose.com');
-INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('27','TechImports','20123456807','901234575','negocios@Bose.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('4','Sennheiser','20123456784','934567890','negocios@sennheiser.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('5','Samsung','20123456785','956789012','negocios@samsung.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('6','Apple','20123456786','978901234','negocios@apple.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('7','Xiaomi','20123456787','901234567','negocios@xiamoi.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('8','Huawei','20123456788','923456781','negocios@huawei.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('9','Anker','20123456789','945678901','negocios@anker.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('10','Wacom','20123456790','967890123','negocios@wacom.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('11','HP','20123456791','989012345','negocios@hp.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('12','Dell','20123456792','901234569','negocios@dell.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('13','ASUS','20123456793','923456784','negocios@asus.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('14','Kingston','20123456794','945678903','negocios@kingston.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('15','Amazon','20123456795','967890125','negocios@amazon.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('16','Google','20123456796','989012347','negocios@google.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('17','Philips','20123456797','901234571','negocios@philips.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('18','TP-Link','20123456798','923456786','negocios@tplink.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('19','Insta360','20123456799','945678905','negocios@insta360.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('20','GoPro','20123456800','967890127','negocios@gopro.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('21','DJI','20123456801','989012349','negocios@dji.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('22','LG','20123456802','901234573','negocios@lg.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('23','Microsoft','20123456803','923456788','negocios@microsoft.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('24','CantonImportsPeru','20123456804','945678907','negocios@cantonimportsperu.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('25','Rode','20123456805','967890129','negocios@rode.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('26','Focusrite','20123456806','989012351','negocios@focusrite.com');
+INSERT INTO Proveedor (id,Nombre,RUC,telefono,correo) VALUES ('27','TechImports','20123456807','901234575','negocios@techimports.com');
 
 -- Productos
 INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('1','Sony WH-1000XM4', 'Audífonos inalámbricos con cancelación de ruido y calidad de sonido excepcional','Audio','Audifonos','20','2');
@@ -306,9 +306,9 @@ INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveed
 INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('190','Samsung HW-Q950A', 'Barras de sonido 11.1.4 con Dolby Atmos y conectividad Bluetooth','TV y Video','Barras de Sonido','20','5');
 INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('191','Bose Soundbar 700', 'Barra de sonido premium con cancelación de ruido y control por voz','TV y Video','Barras de Sonido','20','3');
 INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('192','LG SN11RG', 'Barra de sonido 7.1.4 con Dolby Atmos y DTS:X para un sonido envolvente','TV y Video','Barras de Sonido','20','22');
-INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('193','APC BE600M1', 'Estabilizador de voltaje y protector de sobretensiones para equipos electrónicos','TV y Video','Transformadores, Estabilizadores y Extensiones','20','27');
-INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('194','Sansui Power Strip', 'Extensión de corriente con 6 tomas y protección contra sobrecargas','TV y Video','Transformadores, Estabilizadores y Extensiones','20','27');
-INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('195','Tripp Lite Isobar Surge Protector', 'Protector contra sobrecargas con 8 tomas y filtrado de ruido','TV y Video','Transformadores, Estabilizadores y Extensiones','20','27');
+INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('193','APC BE600M1', 'Estabilizador de voltaje y protector de sobretensiones para equipos electrónicos','TV y Video','Transformadores, Estabilizadores y Extensiones','17','27');
+INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('194','Sansui Power Strip', 'Extensión de corriente con 6 tomas y protección contra sobrecargas','TV y Video','Transformadores, Estabilizadores y Extensiones','18','27');
+INSERT INTO Producto (id,Nombre,Descripcion,Categoria,SubCategoria,Stock,Proveedor_id) VALUES ('195','Tripp Lite Isobar Surge Protector', 'Protector contra sobrecargas con 8 tomas y filtrado de ruido','TV y Video','Transformadores, Estabilizadores y Extensiones','19','27');
 
 
 
@@ -987,3 +987,6 @@ INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha
 INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('298','1','193','Pedido','Estimado se le solicita el producto: ','20','2021-12-10','Finalizado');
 INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('299','1','194','Pedido','Estimado se le solicita el producto: ','20','2021-12-10','Finalizado');
 INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('300','1','195','Pedido','Estimado se le solicita el producto: ','20','2021-12-10','Finalizado');
+INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('301','1','193','Devolución','Se encontro defectos en el producto: ','3','2024-07-07','Finalizado');
+INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('302','1','194','Devolución','Se encontro defectos en el producto: ','2','2024-07-07','Finalizado');
+INSERT INTO Solicitud (id,Usuario_id,Producto_id,Tipo,Descripcion,cantidad,fecha,estado) VALUES ('303','1','195','Devolución','Se encontro defectos en el producto: ','1','2024-07-07','Finalizado');
