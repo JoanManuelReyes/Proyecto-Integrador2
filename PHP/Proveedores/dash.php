@@ -97,6 +97,7 @@ while($array=mysqli_fetch_array($resultListProv))  {
                                             <h5 class="card-title">Registro:</h5>
                                         </div>
                                         <form id="productForm" action="controller.php" method="post">
+                                        <input type="hidden" name="user" value="<?= $_GET['user'] ?>">
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="row mb-2">
